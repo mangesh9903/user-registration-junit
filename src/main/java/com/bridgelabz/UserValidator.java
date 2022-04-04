@@ -15,6 +15,7 @@ public class UserValidator {
     private final String NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$";
     private final String EMAIL_PATTERN = "^[a-zA-Z0-9]{1,}[.]{0,1}[a-zA-Z0-9]{0,}+@[a-zA-Z0-9]+.[a-zA-Z]{2,3}[.]{0,1}[a-zA-Z]{0,2}$";
     private final String MOBILE_NO_PATTERN = "^[0-9]{0,2}[-][0-9]{10}";
+    private final String PASSWORD_PATTERRN = "^(?=.*[0-9])" + "(?=.*[a-z])(?=.*[A-Z])" + "(?=.*[@\\-#$%^&+=])" + "(?=\\S+$).{8,}$";
 
     /**
      * @param firstName Input from the user
@@ -50,5 +51,14 @@ public class UserValidator {
     public boolean validateMobileNumber(String mobileNumber) {
         Pattern pattern = Pattern.compile(MOBILE_NO_PATTERN);
         return pattern.matcher(mobileNumber).matches();
+    }
+
+    /**
+     * @param password from the user
+     * @return It will Check Input and Field Pattern and Give result.
+     */
+    public boolean validatePassword(String password) {
+        Pattern pattern = Pattern.compile(PASSWORD_PATTERRN);
+        return pattern.matcher(password).matches();
     }
 }

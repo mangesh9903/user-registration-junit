@@ -145,4 +145,56 @@ public class UserValidatorTest {
         boolean result = userValidator.validateMobileNumber("91-762026");
         Assert.assertFalse(result);
     }
+
+    /**
+     * use case 5 test cases for password
+     */
+    // Given Password When Password Is Minimum Eight Digit Should Return True
+    @Test
+    public void givenPassword_WhenPasswordIsMinimumEightDigit_ShouldReturn_True() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validatePassword("Mangesh234$");
+        Assert.assertTrue(result);
+    }
+
+    // Given Password When Password Is Not Minimum Eight Digit Should Return False
+    @Test
+    public void givenPassword_WhenPasswordIsNotMinimumEightDigit_ShouldReturn_False() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validatePassword("mang");
+        Assert.assertFalse(result);
+    }
+
+    // Given Password When Password Have At least One Capital Letter Should Return True
+    @Test
+    public void givenPassword_WhenPasswordHaveAtleastOneCapitalLetter_ShouldReturn_True() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validatePassword("Mangesh234$");
+        Assert.assertTrue(result);
+    }
+
+    // Given Password When Password Not Have At least One Capital Letter Should Return False
+    @Test
+    public void givenPassword_WhenPasswordNotHaveAtleastOneCapitalLetter_ShouldReturn_False() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validatePassword("mangesh@");
+        Assert.assertFalse(result);
+    }
+
+    // Given Password When Password Have At least One Speacial Character Should Return True
+    @Test
+    public void givenPassword_WhenPasswordHaveAtleastOneSpeacialCharacter_ShouldReturn_True() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validatePassword("Mangesh123$");
+        Assert.assertTrue(result);
+    }
+
+    // Given Password When Password Not Have At least One Speacial Character Should Return False
+    @Test
+    public void givenPassword_WhenPasswordNotHaveAtleastOneSpeacialCharacter_ShouldReturn_False() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validatePassword("mangesh1234");
+        Assert.assertFalse(result);
+    }
+
 }
