@@ -92,7 +92,7 @@ public class UserValidatorTest {
     public void givenEmail_WhenEmailEndsWithCom_ShouldReturn_True() {
         UserValidator userValidator = new UserValidator();
         boolean result = userValidator.validateEmail("mangesh@gmail.com");
-        Assert.assertEquals(true, result);
+        Assert.assertTrue(result);
     }
 
     // Given Email When Email Ends With In Should Return True
@@ -100,7 +100,7 @@ public class UserValidatorTest {
     public void givenEmail_WhenEmailEndsWithIn_ShouldReturn_True() {
         UserValidator userValidator = new UserValidator();
         boolean result = userValidator.validateEmail("mangesh@gmail.co.in");
-        Assert.assertEquals(true, result);
+        Assert.assertTrue(result);
     }
 
     // Given Email When Email Not Ends With Com Or In Should Return False
@@ -108,6 +108,41 @@ public class UserValidatorTest {
     public void givenEmail_WhenEmailNotEndsWithComOrIn_ShouldReturn_False() {
         UserValidator userValidator = new UserValidator();
         boolean result = userValidator.validateEmail("Abc@gmail.sdf.errt");
-        Assert.assertEquals(false, result);
+        Assert.assertFalse(result);
+    }
+
+    /**
+     * Use case 4 Test cases for Mobile Number
+     */
+    // Given Mobile Number When Mobile Number Is Followed By Country Code True
+    @Test
+    public void givenMobileNumber_WhenMobileNumberIsFollowedByCountryCode_True() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validateMobileNumber("91-7620263999");
+        Assert.assertTrue(result);
+    }
+
+    // Given Mobile Number When Mobile Number Is Not Followed By Country Code Should Return False
+    @Test
+    public void givenMobileNumber_WhenMobileNumberIsNotFollowedByCountryCode_ShouldReturn_False() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validateMobileNumber("7620263999");
+        Assert.assertFalse(result);
+    }
+
+    // Given Phone Number When Phone Number Is Ten Digit True
+    @Test
+    public void givenMobileNumber_WhenMobileNumberIsTenDigit_True() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validateMobileNumber("91-7620263999");
+        Assert.assertTrue(result);
+    }
+
+    // Given Phone Number When Phone Number Is Not Ten Digit Should Return False
+    @Test
+    public void givenMobileNumber_WhenMobileNumberIsNotTenDigit_ShouldReturn_False() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validateMobileNumber("91-762026");
+        Assert.assertFalse(result);
     }
 }
