@@ -75,4 +75,39 @@ public class UserValidatorTest {
         boolean result = userValidator.validateLastName("Bh");
         Assert.assertFalse(result);
     }
+
+    /**
+     * use case 3 test cases for Email Address.
+     */
+    // Given Email When Email Starts With Small Letter ShouldReturn True
+    @Test
+    public void givenEmail_WhenEmailStartsWithSmallLetter_ShouldReturn_True() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validateEmail("mangeshb9903@gmail.com");
+        Assert.assertTrue(result);
+    }
+
+    // Given Email When Email Ends With Com Should Return True
+    @Test
+    public void givenEmail_WhenEmailEndsWithCom_ShouldReturn_True() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validateEmail("mangesh@gmail.com");
+        Assert.assertEquals(true, result);
+    }
+
+    // Given Email When Email Ends With In Should Return True
+    @Test
+    public void givenEmail_WhenEmailEndsWithIn_ShouldReturn_True() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validateEmail("mangesh@gmail.co.in");
+        Assert.assertEquals(true, result);
+    }
+
+    // Given Email When Email Not Ends With Com Or In Should Return False
+    @Test
+    public void givenEmail_WhenEmailNotEndsWithComOrIn_ShouldReturn_False() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validateEmail("Abc@gmail.sdf.errt");
+        Assert.assertEquals(false, result);
+    }
 }
