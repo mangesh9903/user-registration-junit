@@ -22,4 +22,13 @@ public class UserValidator {
         Pattern pattern = Pattern.compile(NAME_PATTERN);
         return pattern.matcher(firstName).matches();
     }
+
+    /**
+     * @param lastName Input from the user
+     * @return It will Check Input and Field Pattern and Give result.
+     */
+    public boolean validateLastName(String lastName) {
+        Pattern pattern = Pattern.compile(NAME_PATTERN);
+        return pattern.matcher(lastName).matches();
+    }
 }
