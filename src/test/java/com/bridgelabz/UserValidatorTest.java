@@ -1,6 +1,5 @@
 package com.bridgelabz;
 
-import com.bridgelabz.customexception.InvalidUserException;
 import com.bridgelabz.serviceimpl.UserValidator;
 import org.junit.Assert;
 import org.junit.Test;
@@ -35,7 +34,7 @@ public class UserValidatorTest {
 
     //when a name does not contain 3 minimum letters
     @Test
-    public void givenFirstName_NotHaveMinimumThreeLetters_ShouldReturn_False() throws InvalidUserException {
+    public void givenFirstName_NotHaveMinimumThreeLetters_ShouldReturn_False() {
         UserValidator userValidator = new UserValidator();
         boolean result = userValidator.validateFirstName("Ma");
         Assert.assertFalse(result);

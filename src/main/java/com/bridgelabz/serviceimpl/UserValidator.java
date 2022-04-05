@@ -1,6 +1,7 @@
 package com.bridgelabz.serviceimpl;
 
 import com.bridgelabz.customexception.InvalidUserException;
+import com.bridgelabz.service.UserRegistrationFI;
 import com.bridgelabz.service.UserValidatorI;
 
 import java.util.regex.Pattern;
@@ -25,9 +26,8 @@ public class UserValidator implements UserValidatorI {
      * @return It will Check Input and Field Pattern  and Give result.
      */
     public boolean validateFirstName(String firstName) {
-
-        Pattern pattern = Pattern.compile(NAME_PATTERN);
-        boolean result = pattern.matcher(firstName).matches();
+        UserRegistrationFI userRegistrationIFun = (namePattern, input) -> Pattern.matches(NAME_PATTERN, input);
+        boolean result = userRegistrationIFun.validate(NAME_PATTERN, firstName);
         try {
             if (result) {
                 return result;
@@ -45,8 +45,8 @@ public class UserValidator implements UserValidatorI {
      * @return It will Check Input and Field Pattern and Give result.
      */
     public boolean validateLastName(String lastName) {
-        Pattern pattern = Pattern.compile(NAME_PATTERN);
-        boolean result = pattern.matcher(lastName).matches();
+        UserRegistrationFI userRegistrationIFun = (namePattern, input) -> Pattern.matches(NAME_PATTERN, input);
+        boolean result = userRegistrationIFun.validate(NAME_PATTERN, lastName);
         try {
             if (result) {
                 return result;
@@ -59,14 +59,14 @@ public class UserValidator implements UserValidatorI {
         return result;
     }
 
-
     /**
      * @param email Input from the user
      * @return It will Check Input and Field Pattern and Give result.
      */
+    @Override
     public boolean validateEmail(String email) {
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        boolean result = pattern.matcher(email).matches();
+        UserRegistrationFI userRegistrationIFun = (emailPattern, input) -> Pattern.matches(EMAIL_PATTERN, input);
+        boolean result = userRegistrationIFun.validate(EMAIL_PATTERN, email);
         try {
             if (result) {
                 return result;
@@ -83,9 +83,10 @@ public class UserValidator implements UserValidatorI {
      * @param mobileNumber from the user
      * @return It will Check Input and Field Pattern and Give result.
      */
+    @Override
     public boolean validateMobileNumber(String mobileNumber) {
-        Pattern pattern = Pattern.compile(MOBILE_NO_PATTERN);
-        boolean result = pattern.matcher(mobileNumber).matches();
+        UserRegistrationFI userRegistrationIFun = (mobileNoPattern, input) -> Pattern.matches(MOBILE_NO_PATTERN, input);
+        boolean result = userRegistrationIFun.validate(MOBILE_NO_PATTERN, mobileNumber);
         try {
             if (result) {
                 return result;
@@ -102,9 +103,10 @@ public class UserValidator implements UserValidatorI {
      * @param password from the user
      * @return It will Check Input and Field Pattern and Give result.
      */
+    @Override
     public boolean validatePassword(String password) {
-        Pattern pattern = Pattern.compile(PASSWORD_PATTERRN);
-        boolean result = pattern.matcher(password).matches();
+        UserRegistrationFI userRegistrationIFun = (passwordPattern, input) -> Pattern.matches(PASSWORD_PATTERRN, input);
+        boolean result = userRegistrationIFun.validate(PASSWORD_PATTERRN, password);
         try {
             if (result) {
                 return result;
@@ -115,5 +117,6 @@ public class UserValidator implements UserValidatorI {
             System.out.println(e.getMessage());
         }
         return result;
+
     }
 }
