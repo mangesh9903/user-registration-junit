@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
  * @version 1.0
  * @since 31-03-2022
  *
- **********************************************************************/
+ ***********************************************************************/
 
 public class UserValidator implements UserValidatorI {
     final String NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$";
