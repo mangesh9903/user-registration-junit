@@ -1,10 +1,11 @@
 package com.bridgelabz;
 
+import com.bridgelabz.customexception.InvalidUserException;
+import com.bridgelabz.serviceimpl.UserValidator;
 import org.junit.Assert;
 import org.junit.Test;
 
 public class UserValidatorTest {
-
     /**
      * use case 1 test cases for first name
      */
@@ -13,7 +14,6 @@ public class UserValidatorTest {
     public void givenFirstName_ShouldReturn_True() {
         UserValidator validator = new UserValidator();
         boolean result = validator.validateFirstName("Mangesh");
-        System.out.println(result);
         Assert.assertTrue(result);
     }
 
@@ -35,11 +35,14 @@ public class UserValidatorTest {
 
     //when a name does not contain 3 minimum letters
     @Test
-    public void givenFirstName_NotHaveMinimumThreeLetters_ShouldReturn_False() {
+    public void givenFirstName_NotHaveMinimumThreeLetters_ShouldReturn_False() throws InvalidUserException {
         UserValidator userValidator = new UserValidator();
         boolean result = userValidator.validateFirstName("Ma");
         Assert.assertFalse(result);
     }
+
+    /*
+     */
 
     /**
      * use case 2 test cases for last name
@@ -99,7 +102,7 @@ public class UserValidatorTest {
     @Test
     public void givenEmail_WhenEmailEndsWithIn_ShouldReturn_True() {
         UserValidator userValidator = new UserValidator();
-        boolean result = userValidator.validateEmail("mangesh@gmail.co.in");
+        boolean result = userValidator.validateEmail("mangeshb9903@gmail.co.in");
         Assert.assertTrue(result);
     }
 
@@ -107,7 +110,15 @@ public class UserValidatorTest {
     @Test
     public void givenEmail_WhenEmailNotEndsWithComOrIn_ShouldReturn_False() {
         UserValidator userValidator = new UserValidator();
-        boolean result = userValidator.validateEmail("Abc@gmail.sdf.errt");
+        boolean result = userValidator.validateEmail("abc@gmail.sdf.errt");
+        Assert.assertFalse(result);
+    }
+
+    // Given Email When Email Not Ends With Com Or In Should Return False
+    @Test
+    public void givenEmail_WhenEmailStartWithCapitalLetter_ShouldReturn_False() {
+        UserValidator userValidator = new UserValidator();
+        boolean result = userValidator.validateEmail("Abc@gmail.com");
         Assert.assertFalse(result);
     }
 
@@ -153,7 +164,7 @@ public class UserValidatorTest {
     @Test
     public void givenPassword_WhenPasswordIsMinimumEightDigit_ShouldReturn_True() {
         UserValidator userValidator = new UserValidator();
-        boolean result = userValidator.validatePassword("Mangesh234$");
+        boolean result = userValidator.validatePassword("Bhujang234$");
         Assert.assertTrue(result);
     }
 
@@ -193,7 +204,7 @@ public class UserValidatorTest {
     @Test
     public void givenPassword_WhenPasswordNotHaveAtleastOneSpeacialCharacter_ShouldReturn_False() {
         UserValidator userValidator = new UserValidator();
-        boolean result = userValidator.validatePassword("mangesh1234");
+        boolean result = userValidator.validatePassword("Mangesh1234");
         Assert.assertFalse(result);
     }
 
